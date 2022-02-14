@@ -10,8 +10,8 @@ export default async function fund(
     const {network, address} = req.body;
     const url = getNodeURL(network);
     const connection = new Connection(url, 'confirmed');
-    const publicKey = undefined;
-    const hash = undefined;
+    const publicKey = new PublicKey(address);
+    const hash = await connection.requestAirdrop(publicKey, LAMPORTS_PER_SOL);
     await undefined;
     res.status(200).json(hash);
   } catch (error) {
